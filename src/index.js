@@ -1,17 +1,22 @@
-let items = [];
+const items = [];
 const button = document.getElementById("submit");
-let inputValue = document.getElementById("input");
+const inputValue = document.getElementById("input");
 const results = document.getElementById("todo-container");
 
 button.addEventListener("click", function () {
   const input = inputValue.value;
 
-  items.push(input);
-  results.innerHTML = "";
-  items.forEach((item) => {
-    let p = document.createElement("p");
-    p.innerText = item;
-    results.appendChild(p);
-  });
-  console.log(items[items.length - 1]);
+  if (input.length > -1) {
+    items.push(input);
+    results.innerHTML = "";
+    items.forEach((item) => {
+      let p = document.createElement("p");
+      p.innerText = item;
+      results.appendChild(p);
+    });
+  }
+
+  if (input === "") {
+    alert("Enter an item in your list");
+  }
 });
