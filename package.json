@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/nicolestanton/ToDo#readme",
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },

@@ -18,14 +18,30 @@ function createItem(items) {
     let p = document.createElement("p");
     p.innerText = item;
     results.appendChild(p);
-    let deleteItem = document.createElement("span");
-    deleteItem.innerText = "delete";
-    results.appendChild(deleteItem);
 
-    deleteItem.addEventListener("click", function () {
+    const editIcon = document.createElement("i");
+    editIcon.className = "fa fa-pencil";
+    results.appendChild(editIcon);
+
+    editIcon.addEventListener("click", function (event) {
+      const item = event.target.parentElement;
+      const textArea = item.querySelector("p");
+
+      if (textArea.getAttribute("contenteditable") === "true") {
+        textArea.setAttribute("contenteditable", "false");
+      } else {
+        textArea.setAttribute("contenteditable", "true");
+      }
+    });
+
+    const deleteIcon = document.createElement("i");
+    deleteIcon.className = "fa fa-times-circle";
+    results.appendChild(deleteIcon);
+
+    deleteIcon.addEventListener("click", function () {
       results.removeChild(p);
-      results.removeChild(deleteItem);
-      items.pop();
+      results.removeChild(deleteIcon);
+      results.removeChild(editIcon);
     });
   });
 }
