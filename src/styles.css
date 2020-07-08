@@ -1,3 +1,10 @@
-li {
+/* li {
   display: inline-flex;
+  background-color: red;
+} */
+
+#todo-container {
+  p {
+    color: red;
+  }
 }

@@ -1,4 +1,4 @@
-const items = [];
+let items = [];
 const button = document.getElementById("submit");
 const inputValue = document.getElementById("input");
 const results = document.getElementById("todo-container");
