@@ -19,9 +19,24 @@ function deleteItem(event) {
   parent.remove();
 }
 
+function importantItem(event) {
+  const parent = event.target.parentNode;
+  parent.classList.toggle("important");
+
+  if (parent.className === "important") {
+    items.unshift(0);
+  }
+
+  console.log(items);
+}
+
 // TODO: Write tests for this function
 function createItem(items) {
   items.forEach((item, index) => {
+    const itemsNew = {
+      item: inputValue.value,
+      isImportant: false,
+    };
     const itemDiv = document.createElement("div");
     itemDiv.setAttribute("data-position", index);
     let p = document.createElement("p");
@@ -41,6 +56,7 @@ function createItem(items) {
       } else {
         textArea.setAttribute("contenteditable", "true");
       }
+      console.log(itemsNew);
     });
 
     const deleteIcon = document.createElement("i");
@@ -48,6 +64,12 @@ function createItem(items) {
     itemDiv.appendChild(deleteIcon);
     deleteIcon.addEventListener("click", deleteItem);
     results.appendChild(itemDiv);
+
+    const starIcon = document.createElement("i");
+    starIcon.className = "fa fa-star";
+    itemDiv.appendChild(starIcon);
+    starIcon.addEventListener("click", importantItem);
+    // results.appendChild(itemDiv);
   });
 }
 
