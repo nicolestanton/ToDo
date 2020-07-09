@@ -12,16 +12,25 @@ function inputValueIsValid(input) {
   return true;
 }
 
+function deleteItem(event) {
+  const parent = event.target.parentNode;
+  const position = parent.getAttribute("data-position");
+  items.splice(position, 1);
+  parent.remove();
+}
+
 // TODO: Write tests for this function
 function createItem(items) {
-  items.forEach((item) => {
+  items.forEach((item, index) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.setAttribute("data-position", index);
     let p = document.createElement("p");
     p.innerText = item;
-    results.appendChild(p);
+    itemDiv.appendChild(p);
 
     const editIcon = document.createElement("i");
     editIcon.className = "fa fa-pencil";
-    results.appendChild(editIcon);
+    itemDiv.appendChild(editIcon);
 
     editIcon.addEventListener("click", function (event) {
       const item = event.target.parentElement;
@@ -36,13 +45,9 @@ function createItem(items) {
 
     const deleteIcon = document.createElement("i");
     deleteIcon.className = "fa fa-times-circle";
-    results.appendChild(deleteIcon);
-
-    deleteIcon.addEventListener("click", function () {
-      results.removeChild(p);
-      results.removeChild(deleteIcon);
-      results.removeChild(editIcon);
-    });
+    itemDiv.appendChild(deleteIcon);
+    deleteIcon.addEventListener("click", deleteItem);
+    results.appendChild(itemDiv);
   });
 }
 
