@@ -1,8 +1,49 @@
-#todo-container {
-  p {
-    color: #4e4e4e;
-    font-size: 20px;
-    font-family: montserrat;
-    text-transform: capitalize;
+#app{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  h1{
+    font-family: 'PT Serif', serif;
+  }
+
+  .todo-input {
+    #input{
+      border: 1px solid grey;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    #submit{
+      border: 1px solid grey;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #3c3c4c;
+      color: white;
+    }
+  }
+
+  #todo-container {
+    width: 35%;
+    background-color: #efefef;
+    border-radius: 10px;
+
+    p {
+      color: #4e4e4e;
+      font-size: 20px;
+      font-family: montserrat;
+      text-transform: capitalize;
+    }
+
+    .item{
+      display: flex;
+      align-items: center;
+
+      i{
+        padding: 10px
+      }
+    }
   }
 }

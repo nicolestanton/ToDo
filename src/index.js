@@ -34,7 +34,8 @@ function importantItem(event) {
     clearItems();
     createItem();
     console.log("parent improtant");
-  } else if (parent.classList !== "item important") {
+  } 
+  else if (!parent.classList.contains("important")) {
     favouriteItem[0].isImportant = false;
     console.log("parent not improtant");
   }
