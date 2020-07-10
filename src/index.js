@@ -1,4 +1,5 @@
 let items = [];
+
 const button = document.getElementById("submit");
 const inputValue = document.getElementById("input");
 const results = document.getElementById("todo-container");
@@ -20,34 +21,51 @@ function deleteItem(event) {
 }
 
 function importantItem(event) {
-  const parent = event.target.parentNode;
+  let parent = event.target.parentNode;
   parent.classList.toggle("important");
-
-  if (parent.className === "important") {
-    items.unshift(0);
+  const position = parent.getAttribute("data-position");
+  //remove starred item and insert at beginning try .splice
+  if (parent.classList.contains("important")) {
+    // console.log("parent", parent.className);
+    const favouriteItem = items.splice(position, 1);
+    favouriteItem[0].isImportant = true;
+    items.unshift(favouriteItem[0]);
+    // console.log("important items array", items);
+    clearItems();
+    createItem();
+    console.log("parent improtant");
+  } else if (parent.classList !== "item important") {
+    favouriteItem[0].isImportant = false;
+    console.log("parent not improtant");
   }
+}
 
-  console.log(items);
+function clearItems() {
+  results.innerHTML = "";
 }
 
 // TODO: Write tests for this function
-function createItem(items) {
+function createItem() {
   items.forEach((item, index) => {
-    const itemsNew = {
-      item: inputValue.value,
-      isImportant: false,
-    };
     const itemDiv = document.createElement("div");
     itemDiv.setAttribute("data-position", index);
+    itemDiv.classList.add("item");
     let p = document.createElement("p");
-    p.innerText = item;
+    p.innerText = item.item;
     itemDiv.appendChild(p);
+
+    const starIcon = document.createElement("i");
+    starIcon.className = "fa fa-star";
+    itemDiv.appendChild(starIcon);
+    starIcon.addEventListener("click", importantItem);
+    results.appendChild(itemDiv);
 
     const editIcon = document.createElement("i");
     editIcon.className = "fa fa-pencil";
     itemDiv.appendChild(editIcon);
 
     editIcon.addEventListener("click", function (event) {
+      // TODO: need to highlight the edit feature with styling
       const item = event.target.parentElement;
       const textArea = item.querySelector("p");
 
@@ -56,7 +74,6 @@ function createItem(items) {
       } else {
         textArea.setAttribute("contenteditable", "true");
       }
-      console.log(itemsNew);
     });
 
     const deleteIcon = document.createElement("i");
@@ -64,27 +81,24 @@ function createItem(items) {
     itemDiv.appendChild(deleteIcon);
     deleteIcon.addEventListener("click", deleteItem);
     results.appendChild(itemDiv);
-
-    const starIcon = document.createElement("i");
-    starIcon.className = "fa fa-star";
-    itemDiv.appendChild(starIcon);
-    starIcon.addEventListener("click", importantItem);
-    // results.appendChild(itemDiv);
   });
 }
 
 button.addEventListener("click", function () {
   const input = inputValue.value;
+  let itemsNew = {
+    item: inputValue.value,
+    isImportant: false,
+  };
 
   if (!inputValueIsValid(input)) {
     alert("Enter a valid item");
     return;
   }
 
-  items.push(input);
+  items.push(itemsNew);
 
-  results.innerHTML = "";
-
-  createItem(items);
-  console.log(items);
+  clearItems();
+  createItem();
+  console.log("items", items);
 });
