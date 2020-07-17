@@ -20,50 +20,68 @@ function deleteItem(event) {
   parent.remove();
 }
 
-function importantItem(event) {
-  let parent = event.target.parentNode;
-  parent.classList.toggle("important");
+function toggleImportantItem(event) {
+  const parent = event.target.parentNode;
   const position = parent.getAttribute("data-position");
-  //remove starred item and insert at beginning try .splice
-  if (parent.classList.contains("important")) {
-    // console.log("parent", parent.className);
-    const favouriteItem = items.splice(position, 1);
-    favouriteItem[0].isImportant = true;
-    items.unshift(favouriteItem[0]);
-    // console.log("important items array", items);
-    clearItems();
-    createItem();
-    console.log("parent improtant");
-  } 
-  else if (!parent.classList.contains("important")) {
-    favouriteItem[0].isImportant = false;
-    console.log("parent not improtant");
-  }
-}
+  const favouriteItem = items.splice(position, 1)[0];
+  favouriteItem.isImportant = !favouriteItem.isImportant; //toggles the isImportant value when icon is clicked
+  items.unshift(favouriteItem) // puts important item at the top of the list
+  clearItems();
+  createItem();
+} 
 
 function clearItems() {
   results.innerHTML = "";
 }
 
+//create new div for item to go into
+function createItemElement(important, index){
+  const div = document.createElement("div");
+  //toggles the important class in the html for styling because within the toggleImportant function clears the class
+    if(important){ 
+      div.classList.add('important')
+    }
+    div.setAttribute("data-position", index);
+    div.classList.add("item");
+    return div
+}
+
+//create the text contents of the item
+function createItemText(text){
+  const p = document.createElement('p')
+  p.textContent = text  //text is defined within createItem function - item.item
+  return p
+}
+
+function createImportantIcon(){
+  const importantIcon = document.createElement('i')
+  importantIcon.className = "star fa fa-star";
+  importantIcon.addEventListener("click", toggleImportantItem);
+  return importantIcon
+}
+
+
+    function createDeleteIcon(){
+      const deleteIcon = document.createElement("i");
+      deleteIcon.className = "delete fa fa-times-circle";
+      deleteIcon.addEventListener("click", deleteItem);
+      return deleteIcon
+    }
+
 // TODO: Write tests for this function
 function createItem() {
-  items.forEach((item, index) => {
-    const itemDiv = document.createElement("div");
-    itemDiv.setAttribute("data-position", index);
-    itemDiv.classList.add("item");
-    let p = document.createElement("p");
-    p.innerText = item.item;
-    itemDiv.appendChild(p);
+  console.log("items", items);
 
-    const starIcon = document.createElement("i");
-    starIcon.className = "fa fa-star";
-    itemDiv.appendChild(starIcon);
-    starIcon.addEventListener("click", importantItem);
-    results.appendChild(itemDiv);
+  items.forEach((item, index) => {
+    const itemDiv = createItemElement(item.isImportant, index)
+    results.appendChild(createItemText(item.item));
+    results.appendChild(createImportantIcon())
+    results.appendChild(createDeleteIcon())
+
 
     const editIcon = document.createElement("i");
-    editIcon.className = "fa fa-pencil";
-    itemDiv.appendChild(editIcon);
+    editIcon.className = "edit fa fa-pencil";
+    results.appendChild(editIcon);
 
     editIcon.addEventListener("click", function (event) {
       // TODO: need to highlight the edit feature with styling
@@ -77,11 +95,7 @@ function createItem() {
       }
     });
 
-    const deleteIcon = document.createElement("i");
-    deleteIcon.className = "fa fa-times-circle";
-    itemDiv.appendChild(deleteIcon);
-    deleteIcon.addEventListener("click", deleteItem);
-    results.appendChild(itemDiv);
+    
   });
 }
 
@@ -101,5 +115,4 @@ button.addEventListener("click", function () {
 
   clearItems();
   createItem();
-  console.log("items", items);
 });
