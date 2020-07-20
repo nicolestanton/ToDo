@@ -37,6 +37,16 @@
         padding: 10px; }
     #app #todo-container .important.item .star {
       color: red; }
+    #app #todo-container .complete.item p {
+      text-decoration: line-through;
+      color: green; }
+    #app #todo-container .complete.item .done {
+      color: green;
+      font-size: 24px; }
+    #app #todo-container .complete.item .star,
+    #app #todo-container .complete.item .delete,
+    #app #todo-container .complete.item .edit {
+      color: #d8d8d8; }
 
 .item > *[contenteditable="true"] {
   border: 1px solid #bbbbbb;

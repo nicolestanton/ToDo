@@ -1,10 +1,15 @@
-const { IgnorePlugin } = require("webpack");
+// const { IgnorePlugin } = require("webpack");
 
 let items = [];
 const button = document.getElementById("submit");
 const inputValue = document.getElementById("input");
 const results = document.getElementById("todo-container");
+const itemCount = document.getElementById("item-count");
 
+function counter() {
+  const count = items.length;
+  itemCount.innerHTML = `You have ${count} to-dos.`;
+}
 // TODO: Write tests for this function
 function inputValueIsValid(input) {
   if (input.trim().length === 0 || input.trim() === "") {
@@ -34,8 +39,8 @@ function itemDone(event) {
   const parent = event.target.parentNode;
   const position = parent.getAttribute("data-position");
   const doneItem = items.splice(position, 1)[0];
-  doneItem.isComplete = !doneItem.isComplete; //toggles the isImportant value when icon is clicked
-  items.push(doneItem); // puts important item at the bottom of the list
+  doneItem.isComplete = !doneItem.isComplete;
+  items.push(doneItem);
   clearItems();
   createItem();
 }
@@ -45,14 +50,16 @@ function clearItems() {
 }
 
 //create new div for item to go into
-function createItemElement(important, index) {
+function createItemElement(important, complete, index) {
   const div = document.createElement("div");
   //toggles the important class in the html for styling because within the toggleImportant function clears the class
+
   if (important) {
     div.classList.add("important");
   }
-  if (isComplete === true) {
-    div.classList.add("done");
+
+  if (complete) {
+    div.classList.add("complete");
   }
 
   div.setAttribute("data-position", index);
@@ -111,7 +118,7 @@ function createItem() {
   console.log("items", items);
 
   items.forEach((item, index) => {
-    const itemDiv = createItemElement(item.isImportant, index);
+    const itemDiv = createItemElement(item.isImportant, item.isComplete, index);
     itemDiv.appendChild(createItemText(item.item));
     itemDiv.appendChild(createImportantIcon());
     itemDiv.appendChild(createDeleteIcon());
@@ -119,11 +126,13 @@ function createItem() {
     itemDiv.appendChild(createDoneIcon());
 
     results.appendChild(itemDiv);
+    counter();
   });
 }
 
 button.addEventListener("click", function () {
   const input = inputValue.value;
+
   let itemsNew = {
     item: inputValue.value,
     isImportant: false,
