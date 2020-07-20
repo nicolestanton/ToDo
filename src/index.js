@@ -1,5 +1,6 @@
-let items = [];
+const { IgnorePlugin } = require("webpack");
 
+let items = [];
 const button = document.getElementById("submit");
 const inputValue = document.getElementById("input");
 const results = document.getElementById("todo-container");
@@ -29,6 +30,15 @@ function toggleImportantItem(event) {
   clearItems();
   createItem();
 }
+function itemDone(event) {
+  const parent = event.target.parentNode;
+  const position = parent.getAttribute("data-position");
+  const doneItem = items.splice(position, 1)[0];
+  doneItem.isComplete = !doneItem.isComplete; //toggles the isImportant value when icon is clicked
+  items.push(doneItem); // puts important item at the bottom of the list
+  clearItems();
+  createItem();
+}
 
 function clearItems() {
   results.innerHTML = "";
@@ -41,6 +51,10 @@ function createItemElement(important, index) {
   if (important) {
     div.classList.add("important");
   }
+  if (isComplete === true) {
+    div.classList.add("done");
+  }
+
   div.setAttribute("data-position", index);
   div.classList.add("item");
   return div;
@@ -65,6 +79,13 @@ function createDeleteIcon() {
   deleteIcon.className = "delete fa fa-times-circle";
   deleteIcon.addEventListener("click", deleteItem);
   return deleteIcon;
+}
+
+function createDoneIcon() {
+  const doneIcon = document.createElement("i");
+  doneIcon.className = "done fa fa-check-circle";
+  doneIcon.addEventListener("click", itemDone);
+  return doneIcon;
 }
 
 function createEditIcon() {
@@ -95,6 +116,7 @@ function createItem() {
     itemDiv.appendChild(createImportantIcon());
     itemDiv.appendChild(createDeleteIcon());
     itemDiv.appendChild(createEditIcon());
+    itemDiv.appendChild(createDoneIcon());
 
     results.appendChild(itemDiv);
   });
@@ -105,6 +127,7 @@ button.addEventListener("click", function () {
   let itemsNew = {
     item: inputValue.value,
     isImportant: false,
+    isComplete: false,
   };
 
   if (!inputValueIsValid(input)) {
