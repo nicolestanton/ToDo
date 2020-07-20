@@ -25,77 +25,78 @@ function toggleImportantItem(event) {
   const position = parent.getAttribute("data-position");
   const favouriteItem = items.splice(position, 1)[0];
   favouriteItem.isImportant = !favouriteItem.isImportant; //toggles the isImportant value when icon is clicked
-  items.unshift(favouriteItem) // puts important item at the top of the list
+  items.unshift(favouriteItem); // puts important item at the top of the list
   clearItems();
   createItem();
-} 
+}
 
 function clearItems() {
   results.innerHTML = "";
 }
 
 //create new div for item to go into
-function createItemElement(important, index){
+function createItemElement(important, index) {
   const div = document.createElement("div");
   //toggles the important class in the html for styling because within the toggleImportant function clears the class
-    if(important){ 
-      div.classList.add('important')
-    }
-    div.setAttribute("data-position", index);
-    div.classList.add("item");
-    return div
+  if (important) {
+    div.classList.add("important");
+  }
+  div.setAttribute("data-position", index);
+  div.classList.add("item");
+  return div;
 }
 
 //create the text contents of the item
-function createItemText(text){
-  const p = document.createElement('p')
-  p.textContent = text  //text is defined within createItem function - item.item
-  return p
+function createItemText(text) {
+  const p = document.createElement("p");
+  p.textContent = text; //text is defined within createItem function - item.item
+  return p;
 }
 
-function createImportantIcon(){
-  const importantIcon = document.createElement('i')
+function createImportantIcon() {
+  const importantIcon = document.createElement("i");
   importantIcon.className = "star fa fa-star";
   importantIcon.addEventListener("click", toggleImportantItem);
-  return importantIcon
+  return importantIcon;
 }
 
+function createDeleteIcon() {
+  const deleteIcon = document.createElement("i");
+  deleteIcon.className = "delete fa fa-times-circle";
+  deleteIcon.addEventListener("click", deleteItem);
+  return deleteIcon;
+}
 
-    function createDeleteIcon(){
-      const deleteIcon = document.createElement("i");
-      deleteIcon.className = "delete fa fa-times-circle";
-      deleteIcon.addEventListener("click", deleteItem);
-      return deleteIcon
+function createEditIcon() {
+  const editIcon = document.createElement("i");
+  editIcon.className = "edit fa fa-pencil";
+
+  editIcon.addEventListener("click", function (event) {
+    // TODO: need to highlight the edit feature with styling
+    const item = event.target.parentElement;
+    const textArea = item.querySelector("p");
+
+    if (textArea.getAttribute("contenteditable") === "true") {
+      textArea.setAttribute("contenteditable", "false");
+    } else {
+      textArea.setAttribute("contenteditable", "true");
     }
+  });
+  return editIcon;
+}
 
 // TODO: Write tests for this function
 function createItem() {
   console.log("items", items);
 
   items.forEach((item, index) => {
-    const itemDiv = createItemElement(item.isImportant, index)
-    results.appendChild(createItemText(item.item));
-    results.appendChild(createImportantIcon())
-    results.appendChild(createDeleteIcon())
+    const itemDiv = createItemElement(item.isImportant, index);
+    itemDiv.appendChild(createItemText(item.item));
+    itemDiv.appendChild(createImportantIcon());
+    itemDiv.appendChild(createDeleteIcon());
+    itemDiv.appendChild(createEditIcon());
 
-
-    const editIcon = document.createElement("i");
-    editIcon.className = "edit fa fa-pencil";
-    results.appendChild(editIcon);
-
-    editIcon.addEventListener("click", function (event) {
-      // TODO: need to highlight the edit feature with styling
-      const item = event.target.parentElement;
-      const textArea = item.querySelector("p");
-
-      if (textArea.getAttribute("contenteditable") === "true") {
-        textArea.setAttribute("contenteditable", "false");
-      } else {
-        textArea.setAttribute("contenteditable", "true");
-      }
-    });
-
-    
+    results.appendChild(itemDiv);
   });
 }
 

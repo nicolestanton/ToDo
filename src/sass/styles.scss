@@ -1,21 +1,21 @@
-#app{
+#app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  h1{
-    font-family: 'PT Serif', serif;
+
+  h1 {
+    font-family: "PT Serif", serif;
   }
 
   .todo-input {
-    #input{
+    #input {
       border: 1px solid grey;
       border-radius: 5px;
       padding: 10px;
       font-size: 16px;
     }
 
-    #submit{
+    #submit {
       border: 1px solid grey;
       border-radius: 5px;
       padding: 10px;
@@ -37,12 +37,18 @@
       text-transform: capitalize;
     }
 
-    .item{
+    .item {
       display: flex;
       align-items: center;
 
-      i{
-        padding: 10px
+      i {
+        padding: 10px;
+      }
+    }
+
+    .important.item {
+      .star {
+        color: red;
       }
     }
   }

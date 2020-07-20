@@ -10,6 +10,5 @@ gulp.task("sass", function () {
 });
 
 gulp.task("watch", function () {
-  gulp.watch("src/sass/**/*.scss", ["sass"]);
-  // Other watchers
+  gulp.watch("src/sass/**/*.scss", gulp.series("sass"));
 });
