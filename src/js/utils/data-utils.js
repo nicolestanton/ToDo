@@ -32,6 +32,7 @@ export function updateItems(actionType, payload) {
     items.unshift(favouriteItem); // puts important item at the top of the list
   } else if (actionType === "delete") {
     items.splice(payload, 1);
+    counter();
   } else if (actionType === "edit") {
     items[payload.position].item = payload.text;
   } else if (actionType === "complete") {
@@ -101,5 +102,5 @@ function createItem() {
 
 function counter() {
   const count = items.length;
-  itemCount.innerHTML = `You have ${count} to-dos.`;
+  itemCount.innerHTML = `You have ${count} things to do.`;
 }
