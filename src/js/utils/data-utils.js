@@ -7,7 +7,10 @@ import {
   createEditIcon,
 } from "./utils";
 
-export let items = [];
+// export let items = [];
+export let items = localStorage.getItem("items")
+  ? JSON.parse(localStorage.getItem("items"))
+  : [];
 const results = document.getElementById("todo-container");
 const itemCount = document.getElementById("item-count");
 
@@ -42,6 +45,7 @@ export function updateItems(actionType, payload) {
   }
 
   clearItems();
+  localStorage.setItem("items", JSON.stringify(items));
   createItem();
 }
 
