@@ -34,6 +34,9 @@ export function itemDone(event) {
 export function createDoneIcon() {
   const doneIcon = document.createElement("i");
   doneIcon.className = "done fa fa-check-circle";
+  // const doneIcon = document.createElement("input");
+  // doneIcon.setAttribute("type", "checkbox");
+  // doneIcon.className = "done";
   doneIcon.addEventListener("click", itemDone);
   return doneIcon;
 }

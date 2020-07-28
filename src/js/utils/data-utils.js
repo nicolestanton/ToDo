@@ -45,8 +45,8 @@ export function updateItems(actionType, payload) {
   }
 
   clearItems();
-  localStorage.setItem("items", JSON.stringify(items));
   createItem();
+  localStorage.setItem("items", JSON.stringify(items));
 }
 
 function clearItems() {
@@ -95,8 +95,8 @@ function createItem() {
     const itemDiv = createItemElement(item.isImportant, item.isComplete, index);
     itemDiv.appendChild(createItemText(item.item));
     itemDiv.appendChild(createImportantIcon());
-    itemDiv.appendChild(createDeleteIcon());
     itemDiv.appendChild(createEditIcon());
+    itemDiv.appendChild(createDeleteIcon());
     itemDiv.appendChild(createDoneIcon());
 
     results.appendChild(itemDiv);

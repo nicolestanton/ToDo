@@ -1,52 +1,94 @@
-#app {
+body {
+  margin: 0; }
+
+#app #container {
+  margin: 0 auto;
+  max-width: 1200px;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center; }
-  #app h1 {
-    font-family: "PT Serif", serif; }
-  #app .todo-input #input {
-    border: 1px solid grey;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 16px; }
-  #app .todo-input #submit {
-    border: 1px solid grey;
-    border-radius: 5px;
-    padding: 10px;
+
+#app #heading {
+  background-color: white; }
+  #app #heading h1 {
+    font-family: "Dancing Script", cursive;
+    font-size: 80px;
+    color: lightcoral;
+    margin-bottom: 35px; }
+  #app #heading img {
+    box-shadow: 0px 0px 5px 3px #e6e6e6; }
+  #app #heading .todo-input {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px; }
+    #app #heading .todo-input #input {
+      border: 1px solid #cecece;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 16px;
+      color: lightcoral; }
+    #app #heading .todo-input #submit {
+      border: 1px solid lightcoral;
+      border-radius: 5px;
+      padding: 9px;
+      font-size: 16px;
+      background-color: lightcoral;
+      color: white;
+      margin-left: -54px;
+      font-family: montserrat; }
+
+#app #item-count {
+  font-family: montserrat;
+  font-size: 14px;
+  padding: 16px;
+  width: 100%;
+  text-align: center;
+  background-color: lightcoral;
+  margin-top: 16px;
+  color: white; }
+
+#app #todo-container {
+  width: 100%;
+  padding-top: 16px;
+  background-color: #efefef; }
+  #app #todo-container p {
+    color: #4e4e4e;
     font-size: 16px;
-    background-color: #3c3c4c;
-    color: white; }
-  #app #todo-container {
-    width: 35%;
-    background-color: #efefef;
-    border-radius: 10px;
-    padding-left: 24px;
-    padding-right: 24px;
-    margin-top: 16px; }
-    #app #todo-container p {
-      color: #4e4e4e;
-      font-size: 20px;
-      font-family: montserrat;
-      text-transform: capitalize;
-      width: 100%; }
-    #app #todo-container .item {
-      display: flex;
-      align-items: center;
-      width: 100%; }
-      #app #todo-container .item i {
-        padding: 10px; }
-    #app #todo-container .important.item .star {
-      color: red; }
-    #app #todo-container .complete.item p {
-      text-decoration: line-through;
-      color: green; }
-    #app #todo-container .complete.item .done {
-      color: green;
-      font-size: 24px; }
-    #app #todo-container .complete.item .star,
-    #app #todo-container .complete.item .delete,
-    #app #todo-container .complete.item .edit {
-      color: #d8d8d8; }
+    font-family: montserrat;
+    text-transform: capitalize;
+    width: 100%;
+    padding-left: 16px; }
+  #app #todo-container .item {
+    display: flex;
+    align-items: center;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 8px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 3px #dedede; }
+    #app #todo-container .item i {
+      padding: 10px; }
+  #app #todo-container .important.item .star {
+    color: lightcoral; }
+  #app #todo-container .star {
+    color: gray; }
+  #app #todo-container .delete {
+    color: red; }
+  #app #todo-container .edit {
+    color: gray; }
+  #app #todo-container .done {
+    color: black; }
+  #app #todo-container .complete.item p {
+    text-decoration: line-through;
+    color: lightcoral; }
+  #app #todo-container .complete.item .done {
+    color: lightcoral; }
+  #app #todo-container .complete.item .star,
+  #app #todo-container .complete.item .delete,
+  #app #todo-container .complete.item .edit {
+    color: #d8d8d8; }
 
 .item > *[contenteditable="true"] {
   border: 1px solid #bbbbbb;

@@ -3,6 +3,10 @@
   <head>
     <!-- <link rel="stylesheet" href="src/styles.css" /> -->
     <link rel="stylesheet" href="src/css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://use.fontawesome.com/779620b9dd.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,13 +14,17 @@
   </head>
   <body>
     <div id="app">
-      <h1>To Do List</h1>
-      <span id="item-count"></span>
-      <div class="todo-input">
-        <input placeholder="Item" id="input" />
-        <button id="submit">Add</button>
+      <div id="container">
+        <div id="heading">
+          <h1>To Do List</h1>
+          <div class="todo-input">
+            <input placeholder="Item" id="input" />
+            <button id="submit">Add</button>
+          </div>
+        </div>
+        <span id="item-count"></span>
+        <div id="todo-container"></div>
       </div>
-      <div id="todo-container"></div>
     </div>
   </body>
 </html>
