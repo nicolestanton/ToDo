@@ -107,4 +107,7 @@ function createItem() {
 function counter() {
   const count = items.length;
   itemCount.innerHTML = `You have ${count} things to do.`;
+  if (count === 0) {
+    itemCount.innerHTML = "You have nothing to do";
+  }
 }
