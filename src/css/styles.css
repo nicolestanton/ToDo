@@ -1,90 +1,80 @@
 body {
-  margin: 0; }
+  margin: 0;
+  background-color: #d5d4ff; }
 
-#app #container {
-  margin: 0 auto;
-  max-width: 1200px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-
-#app #heading {
-  background-color: white; }
-  #app #heading h1 {
-    font-family: "Dancing Script", cursive;
-    font-size: 80px;
-    color: lightcoral;
-    margin-bottom: 35px; }
-  #app #heading img {
+#app #header-info {
+  padding-bottom: 12px;
+  text-align: center; }
+  #app #header-info h1 {
+    font-family: Nunito;
+    color: #490180;
+    font-size: 32px;
+    padding-left: 16px; }
+  #app #header-info img {
     box-shadow: 0px 0px 5px 3px #e6e6e6; }
-  #app #heading .todo-input {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 16px; }
-    #app #heading .todo-input #input {
-      border: 1px solid #cecece;
-      border-radius: 5px;
+  #app #header-info .todo-input {
+    margin-left: 16px; }
+    #app #header-info .todo-input #input {
+      border: 1px solid #c1befb;
+      border-radius: 8px;
       padding: 10px;
-      font-size: 16px;
-      color: lightcoral; }
-    #app #heading .todo-input #submit {
-      border: 1px solid lightcoral;
-      border-radius: 5px;
+      font-size: 11px;
+      background-color: #d6d4ff;
+      color: #490180;
+      width: 300px; }
+    #app #header-info .todo-input #submit {
+      border: 1px solid #c1befb;
+      border-radius: 8px;
       padding: 9px;
-      font-size: 16px;
-      background-color: lightcoral;
-      color: white;
-      margin-left: -54px;
-      font-family: montserrat; }
+      font-size: 11px;
+      background-color: #c1befb;
+      color: #490180;
+      font-family: Nunito; }
 
 #app #item-count {
-  font-family: montserrat;
+  font-family: Nunito;
   font-size: 14px;
-  padding: 16px;
-  width: 100%;
-  text-align: center;
-  background-color: lightcoral;
-  margin-top: 16px;
-  color: white; }
+  padding-left: 16px;
+  color: white;
+  background-color: #490080;
+  border-radius: 100px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  margin: 0 auto; }
 
 #app #todo-container {
-  width: 100%;
-  padding-top: 16px;
-  background-color: #efefef; }
+  background-color: #ffffff;
+  border-radius: 4px;
+  margin: 12px; }
   #app #todo-container p {
     color: #4e4e4e;
-    font-size: 16px;
-    font-family: montserrat;
+    font-size: 14px;
+    font-family: Nunito;
     text-transform: capitalize;
     width: 100%;
     padding-left: 16px; }
   #app #todo-container .item {
     display: flex;
-    align-items: center;
-    width: 95%;
-    margin: 0 auto;
-    margin-bottom: 8px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px 3px #dedede; }
+    align-items: center; }
     #app #todo-container .item i {
-      padding: 10px; }
+      padding: 7px; }
   #app #todo-container .important.item .star {
-    color: lightcoral; }
+    color: #490180; }
   #app #todo-container .star {
     color: gray; }
   #app #todo-container .delete {
-    color: red; }
+    color: #490180; }
   #app #todo-container .edit {
     color: gray; }
   #app #todo-container .done {
     color: black; }
   #app #todo-container .complete.item p {
     text-decoration: line-through;
-    color: lightcoral; }
+    color: black; }
   #app #todo-container .complete.item .done {
-    color: lightcoral; }
+    color: black; }
   #app #todo-container .complete.item .star,
   #app #todo-container .complete.item .delete,
   #app #todo-container .complete.item .edit {
@@ -94,3 +84,9 @@ body {
   border: 1px solid #bbbbbb;
   border-radius: 10px;
   padding: 5px; }
+
+@media screen and (min-width: 570px) {
+  #app #todo-container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 12px; } }

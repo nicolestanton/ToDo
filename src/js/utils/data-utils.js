@@ -4,7 +4,7 @@ import {
   createImportantIcon,
   createDeleteIcon,
   createDoneIcon,
-  createEditIcon,
+  createEditIcon
 } from "./utils";
 
 // export let items = [];
@@ -20,7 +20,7 @@ export function updateItems(actionType, payload) {
     const itemsNew = {
       item: payload,
       isImportant: false,
-      isComplete: false,
+      isComplete: false
     };
 
     if (!inputValueIsValid(payload)) {
@@ -106,8 +106,8 @@ function createItem() {
 
 function counter() {
   const count = items.length;
-  itemCount.innerHTML = `You have ${count} things to do.`;
+  itemCount.innerHTML = `${count} things to do.`;
   if (count === 0) {
-    itemCount.innerHTML = "You have nothing to do";
+    itemCount.innerHTML = "0 things to do";
   }
 }
